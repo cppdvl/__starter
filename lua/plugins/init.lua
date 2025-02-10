@@ -24,6 +24,12 @@ return {
     },
     config = function()
       print("Telescope config loaded")
+            require('telescope').setup {
+                pickers = {
+                    find_files = { theme = "ivy" },
+                    live_grep = { theme = "ivy" },
+                }
+            }
       -- vim.keymap.set("n", "<space>tlg", require('telescope.builtin').live_grep(require('telescope.themes').get_ivy))
       local opts = require('telescope.themes').get_ivy({})
       require('telescope.builtin').live_grep(opts)
