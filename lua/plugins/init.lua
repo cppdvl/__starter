@@ -20,14 +20,17 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-      { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate'}
+      { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
     },
     config = function()
       print("Telescope config loaded")
       require('telescope').setup {
         pickers = {
           find_files = { theme = "ivy" },
-          live_grep = { theme = "ivy" },
+          live_grep = {
+            theme = "ivy",
+            additional_args = function() return { "--case-sensitive"} end
+          },
         }
       }
       -- vim.keymap.set("n", "<space>tlg", require('telescope.builtin').live_grep(require('telescope.themes').get_ivy))
@@ -38,6 +41,7 @@ return {
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
+    enabled = false,
     build = ":Copilot auth",
     event = "BufReadPost",
     opts = {
@@ -57,13 +61,26 @@ return {
         help = true,
       },
     },
-  }
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  },
+  {
+    "Exafunction/codeium.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      vim.g.codeium.enable = true
+      require("codeium").setup({
+      })
+    end
+  },
+  -- {
+  --  "nvim-treesitter/nvim-treesitter",
+  --  opts = {
+  --    ensure_installed = {
+  --      "vim", "lua", "vimdoc",
+  --      "html", "css", "javascript"
+  --    },
+  --  },
+  --},
 }

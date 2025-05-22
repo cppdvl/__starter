@@ -8,6 +8,7 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
 -- telescope
+map("n", "<leader>tlgc", "<cmd>Telescope live_grep args=--case-sensitive<CR>", { desc = "telescope live grep" })
 map("n", "<leader>tlg", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
 map("n", "<leader>tbf", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
 map("n", "<leader>tht", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })

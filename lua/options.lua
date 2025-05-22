@@ -18,6 +18,14 @@ o.shiftwidth  = 4
 o.softtabstop = 4
 o.expandtab   = true
 
+-- Disable line numbers in terminal
+vim.api.nvim_create_autocmd("TermOpen", {
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+  end,
+})
+
 vim.keymap.set("n", "<leader>ind", function()
     local ts = 2
     if bo.tabstop == 2 then ts = 4 end
