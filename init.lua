@@ -19,16 +19,23 @@ vim.g.maplocalleader = "\\"
 local lazy_config = require "configs.lazy"
 
 -- load plugins
-require("lazy").setup({
+local plugin_specs = {
   {
     "NvChad/NvChad",
     lazy = false,
     branch = "v2.5",
     import = "nvchad.plugins",
   },
-
   { import = "plugins" },
-}, lazy_config)
+}
+
+-- Load local plugins if they exist
+local ok, _ = pcall(require, "local.plugins")
+if ok then
+  table.insert(plugin_specs, { import = "local.plugins" })
+end
+
+require("lazy").setup(plugin_specs, lazy_config)
 
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")

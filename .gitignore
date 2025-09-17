@@ -1,0 +1,5 @@
+# Local configuration files
+lua/local/
+local.lua
+*.local.lua
+
