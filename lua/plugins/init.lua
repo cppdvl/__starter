@@ -214,4 +214,11 @@ return {
       },
     },
   },
+  {
+    "johnset97/codex.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("codex").setup()
+    end,
+  },
 }
