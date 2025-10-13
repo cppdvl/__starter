@@ -78,9 +78,6 @@ return {
           },
         }
       }
-      -- vim.keymap.set("n", "<space>tlg", require('telescope.builtin').live_grep(require('telescope.themes').get_ivy))
-      local opts = require('telescope.themes').get_ivy({})
-      require('telescope.builtin').live_grep(opts)
     end
   },
   {
