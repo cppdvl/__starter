@@ -212,7 +212,8 @@ return {
     },
   },
   {
-    "johnset97/codex.nvim",
+    "codex.nvim",
+    dir = "~/.local/share/nvim/lazy/codex.nvim",
     event = "VeryLazy",
     config = function()
       require("codex").setup()

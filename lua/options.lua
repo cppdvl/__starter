@@ -44,5 +44,28 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
+-- Auto-reload buffers when files change outside of Neovim
+vim.opt.autoread = true
+
+-- Reduce the time before CursorHold triggers (optional, affects responsiveness)
+-- vim.opt.updatetime = 250
+
+-- Trigger checktime to detect external changes more aggressively
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  pattern = "*",
+  callback = function()
+    if vim.fn.mode() ~= "c" then
+      vim.cmd("checktime")
+    end
+  end,
+})
+
+-- Notification when file changes
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+  pattern = "*",
+  callback = function()
+    vim.notify("File changed on disk. Buffer reloaded!", vim.log.levels.WARN)
+  end,
+})
 
 
