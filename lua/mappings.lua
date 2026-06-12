@@ -18,8 +18,27 @@ map("c", "<Esc>", "<C-c>", { desc = "Force escape in command mode", noremap = tr
 map("o", "<Esc>", "<Esc>", { desc = "Force escape in operator pending", noremap = true, silent = true })
 
 -- telescope
-map("n", "<leader>tlgc", "<cmd>Telescope live_grep args=--case-sensitive<CR>", { desc = "telescope live grep" })
+map("n", "<leader>TLG", "<cmd>Telescope live_grep args=--case-sensitive<CR>", { desc = "telescope live grep" })
 map("n", "<leader>tlg", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
+-- map("n", "<leader>tlgc", "<cmd>Telescope live_grep additional_args={'-g','*.c','-g','*.cpp','-g','*.h','-g','*.hpp','-g','*.json'}<CR><cmd>echo 'Grep filtered for C/C++/JSON'<CR>", { desc = "telescope live grep (C/C++/JSON)" })
+
+map("n", "<leader>tlgc", function()
+  require('telescope.builtin').live_grep({
+    prompt_title = "Live Grep (C/C++/JSON)",
+    additional_args = function()
+      return {
+        "-g", "*.c",
+        "-g", "*.cpp",
+        "-g", "*.h",
+        "-g", "*.hpp",
+        "-g", "*.json",
+      }
+    end
+  })
+  print("Grep filtered for C/C++/JSON")
+end, { desc = "telescope live grep (C/C++/JSON)" })
+
+
 map("n", "<leader>tbf", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
 map("n", "<leader>tht", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
 map("n", "<leader>tma", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })
