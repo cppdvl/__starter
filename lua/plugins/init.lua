@@ -28,16 +28,12 @@ return {
         defaults = {
           file_ignore_patterns = {
             "%.git/",
-            "node_modules/",
             "%.DS_Store",
             "%.pyc",
             "__pycache__/",
             "%.o",
             "%.so",
             "%.a",
-            "build/",
-            "dist/",
-            "target/",
           },
           hidden = true, -- Show hidden files by default
         },
@@ -45,7 +41,7 @@ return {
           find_files = { 
             theme = "ivy",
             hidden = true, -- Show hidden files in find_files
-            no_ignore = false, -- Respect .gitignore but show hidden files
+            no_ignore = true, -- Also list files ignored by .gitignore
             follow = true, -- Follow symlinks
           },
           live_grep = {
@@ -54,6 +50,7 @@ return {
               return { 
                 "--case-sensitive",
                 "--hidden", -- Search in hidden files
+                "--no-ignore", -- Search in .gitignore'd files too
                 "--glob", "!.git/*", -- Exclude .git directory
               } 
             end
@@ -63,6 +60,7 @@ return {
             additional_args = function() 
               return { 
                 "--hidden", -- Search in hidden files
+                "--no-ignore", -- Search in .gitignore'd files too
                 "--glob", "!.git/*", -- Exclude .git directory
               } 
             end
