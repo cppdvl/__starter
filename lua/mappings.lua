@@ -87,3 +87,6 @@ map("v", "<leader>cd", "<cmd>CopilotChatDocs<cr>", { desc = "Add documentation" 
 map("v", "<leader>ct", "<cmd>CopilotChatTests<cr>", { desc = "Generate tests" })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+-- indexnav: t. / t.. / t... / ttlg / t+
+require("indexnav").setup()
